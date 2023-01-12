@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import './App.css';
+import { countState } from './recoil/atom';
+
 
 function App() {
+  const countNum = useRecoilValue(countState);
+  const [count,setCount] = useRecoilState(countState);
+  const countPlus = ()=>{
+    setCount(count+1)
+  }
+  const countMinus = ()=>{
+    setCount(count-1)
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div>test</div>
+        <button onClick={countPlus}>추가버튼</button>
+        <button onClick={countMinus}>감소버튼</button>
+        {countNum}
     </div>
   );
 }
