@@ -1,20 +1,15 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil';
-import { getApi } from '../recoil/selector';
-
+import { movieData } from '../recoil/selector';
+import MovieList from './MovieList';
 
 const MovieCard = () => {
-    const testApi = useRecoilValue(getApi);
+    const movieList = useRecoilValue(movieData);
   return (
     <div>
-        {
-          testApi.map((item,i)=>{
-            return(
-              <div key={i}>{item.original_title}</div>
-            )
-            
-          })
-        }
+      <MovieList movies={movieList.popularData.data}></MovieList>
+      <MovieList movies={movieList.ratedData.data}></MovieList>
+      <MovieList movies={movieList.upcomingData.data}></MovieList>
     </div>
   )
 }
